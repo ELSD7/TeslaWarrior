@@ -1,0 +1,112 @@
+/* General style */
+body, html {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+
+    font-family: sans-serif;
+}
+
+.gamebox {
+    display: flex; /* Mora da bude flex jer u javaskripti podešavamo da je flex */
+    width: 1000px;
+    height: 650px;
+
+    border: black solid 3px;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 50px;
+    margin: 50px;
+}
+
+button {
+    cursor: pointer;
+}
+
+/* Title screen */
+#TitleScreen {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 5rem;
+}
+
+#TitleScreen img {
+    font-size: 4rem;
+}
+
+#TitleScreen .buttons {
+    display: flex;
+    flex-direction: column;
+
+    gap: 2rem;
+}
+
+#TitleScreen .buttons button {
+    width: 14rem;
+    height: 3rem;
+
+    font-size: 1.5rem;
+}
+
+/* Battle screen */
+#BattleScreen {
+    flex-direction: column;
+
+    align-items: center;
+}
+
+#BattleOutput {
+    margin-top: 2%;
+
+    width: 60%;
+    padding: 0 2.5%;
+    background-color: gray;
+
+    text-align: center;
+}
+
+#EnemyContainer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    margin-top: 3%;
+
+    width: 90%;
+    height: 70%;
+
+    background-color: gray;
+}
+
+#EnemyContainer .enemySlot {
+    text-align: center;
+    background-color: white;
+
+    width: 25%;
+    height: 80%;
+}
+
+#BattleButtons {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    gap: 5%;
+    margin-top: 1.5%;
+}
+
+#BattleButtons .battleButton {
+    width: 15%;
+    padding: 1rem;
+}
+
+

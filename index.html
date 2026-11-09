@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <main>
+        <div class="gamebox" id="TitleScreen"> 
+            <img src="#" alt="Title logo" class="titleLogo">
+
+            <div class="buttons">
+                <button id="PlayButton">
+                    Play
+                </button>
+
+                <button id="CreditsButton">
+                    Credits
+                </button>
+            </div>
+        </div>
+
+        <div class="gamebox" id="BattleScreen">
+            <div id="BattleOutput">
+                <p>
+                    events
+                </p>
+            </div>
+
+            <div id="EnemyContainer">
+                <img src="#" alt="Enemy1" class="enemySlot">
+                <img src="#" alt="Enemy2" class="enemySlot">
+                <img src="#" alt="Enemy3" class="enemySlot">
+            </div>
+
+            <div id="BattleButtons">
+                <button id="AttackEnemyButton" class="battleButton">
+                    Attack
+                </button>
+                
+                <button id="DefendButton" class="battleButton">
+                    Defend
+                </button>
+                
+                <button id="CheckEnemyButton" class="battleButton">
+                    Check
+                </button>
+                
+                <button id="ConsumableItemButton" class="battleButton">
+                    Item
+                </button>
+                
+                <button id="SkipTurnButton" class="battleButton">
+                    Skip
+                </button>
+            </div>
+        </div>
+
+        <div class="gamebox" id="ShopScreen">
+            
+        </div>
+    </main>
+
+    <button id="button1" class="buttonShow">
+        Show title screen
+    </button>
+
+    <button id="button2" class="buttonShow">
+        Show battle screen
+    </button>
+
+    <button id="button3" class="buttonShow">
+        Show shop screen
+    </button>
+
+    <button id="button4" class="buttonShow">
+        Show lose screen
+    </button>
+
+    <button id="button5" class="buttonShow">
+        Show win screen
+    </button>
+
+    <button id="button6" class="buttonShow">
+        Show credits screen
+    </button>
+
+    <script src="./script.js"></script>
+</body>
+
+</html>
