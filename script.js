@@ -2,7 +2,7 @@
 
 //
 
-// Classes/Objects
+// Classes/Objects and other globals
 class BattleStats {
     constructor(hp, defense, resistance, attackPower) {
         this.HP = parseInt(hp);
@@ -12,12 +12,22 @@ class BattleStats {
         this.AttackPower = parseInt(attackPower);
     }
 
-    damageHP(dmg, pierceDef, pierceRes) {   // Returns a number representing how much damage was dealth, returns null if unsuccessful
+    DamageHP(dmg, pierceDef, pierceRes) {   // Returns a number representing how much damage was dealth, returns null if unsuccessful
         if (this.HP <= 0)
             return null;
 
-        let defenseEquation = parseInt(dmg - this.Defense);
-        let resistanceEquation = parseFloat(1 - this.Resistance);
+        let defenseEquation;
+        if (pierceDef)
+            defenseEquation = parseInt(dmg);
+        else
+            defenseEquation = parseInt(dmg - this.Defense);
+
+        let resistanceEquation;
+        if (pierceRes)
+            resistanceEquation = 1;
+        else
+            resistanceEquation = parseFloat(1 - this.Resistance);
+
         let dmgToInflict;
 
         if (defenseEquation <= 0) // If defenseEquation is less than 0 that means that the amount of damage that will be inflicted is less than zero, the defense mechanic is used for reducing the amount of damage that will be inflicted to the entity, but it can't reduce it past 1.
@@ -32,7 +42,7 @@ class BattleStats {
         return dmgToInflict;
     }
 
-    healHP(amount, healPastMax) {   // Returns true if the entity was healed to or past max HP.
+    HealHP(amount, healPastMax) {   // Returns true if the entity was healed to or past max HP.
         if (this.HP >= this.MaxHP && !healPastMax) // Stops the entity from being healed if it's HP is greater than or equal to it's MaxHP while the healPastMax parameter is false
             return false;
 
@@ -51,33 +61,47 @@ class BattleStats {
 }
 
 class EnemyStats {
-    constructor(name, dropRew) {
+    constructor(name, dropRew, moveFunctions, moveSeq, idleSpr) {
         this.Name = name;
         this.DropReward = dropRew;
         this.MoveCount = 0;
 
-        this.MoveSet = [
-            function () {
-                console.log("Nothin\'");
-            }
-        ];
+        if (typeof moveFunctions === 'object') {
+            this.MoveSet = moveFunctions;
+        }
+        else {
+            this.MoveSet = [
+                function () {
+                    console.log("Nothin\'");
+                }
+            ];
+        }
 
-        this.MoveSequence = [0];
-        this.IdleSprite = "./assets/img/noEnemy.png";
+        if (typeof moveSeq === 'object') {
+            this.MoveSequence = moveSeq;
+        }
+        else {
+            this.MoveSequence = [0];
+        }
+
+        if (typeof idleSpr === 'string' || idleSpr instanceof String)
+            this.IdleSprite = idleSpr;
+        else
+            this.IdleSprite = "./assets/img/noEnemy.png";
     }
 
-    useTurn() {
+    UseTurn() {
         this.MoveSet[this.MoveSequence[this.MoveCount % this.MoveSequence.length]]?.();
         this.MoveCount++;
     }
 
-    triggerDeath() {
+    TriggerDeath() {
         Player.Coins += this.DropReward
     }
 }
 
 let Player = {
-    bStats: new BattleStats(100, 0, 0, 25),
+    BStats: new BattleStats(100, 0, 0, 25),
     Coins: 0,
     Defending: false,
 
@@ -85,21 +109,62 @@ let Player = {
     AdditionalRES: 0
 }
 
-let enemy = new EnemyStats("Michael", 30);
-enemy.MoveSet[0] = function () {
-    console.log("Somethin\'")
+let enemyArray = [
+    {
+        EStats: new EnemyStats(
+            "Nothing",
+            0,
+
+            [
+                function () {
+                    console.log("Nothin\'");
+                }
+            ],
+            [0],
+            "./assets/img/noEnemy.png"
+        ),
+
+        BStats: new BattleStats(0, 0, 1, 0)
+    },
+
+    {
+        EStats: new EnemyStats(
+            "Knight",
+            0,
+
+            [
+                function () {
+                    console.log("Dah knight");
+                }
+            ],
+            [0]
+        ),
+
+        BStats: new BattleStats(50, 10, 0, 15)
+    }
+];
+
+let currentEnemies = [
+    {},
+    {},
+    {},
+    {}
+];
+
+for (let i = 0; i < currentEnemies.length; i++) {
+    if (i % 2 == 0)
+        currentEnemies[i] = _.cloneDeep(enemyArray[0]);
+    else
+        currentEnemies[i] = _.cloneDeep(enemyArray[1]);
 }
 
-enemy.useTurn();
+enemyTurn();
 
-console.log(`Player coins: ${Player.Coins}`);
-enemy.triggerDeath();
-console.log(`Player coins: ${Player.Coins}`);
 //
 
 
 // Functions
-function playerTurn(option) // Returns true if the turn was successful, false otherwise
+function playerTurn(option) // Returns true if the turn was used, false otherwise
 {
     /*
     option values:
@@ -110,32 +175,42 @@ function playerTurn(option) // Returns true if the turn was successful, false ot
     Other - Skip turn 
     */
 
-    if (player.bStats.HP <= 0) {
+    if (Player.BStats.HP <= 0) {
         addMessageInOutput("Can\'t do this action because the player is dead.");
         return false;
     }
 
     switch (option) {
         case 1: // Attack
+            // The player picks an enemy from the gamebox and it will be damaged
             break;
         case 2: // Defend
+            // Increases the players defense and/or resistance for this move temporarily
             break;
         case 3: // Check
+            // The player picks an enemy from the gamebox and its stats will be displayed, this doesn't use the players turn
             break;
-        case 4: // Use consumable item, for now it heals 4HP everytime it's used
+        case 4: // Use consumable item
+            // A menu will appear where the players consumable items will be displayed, here the player can pick an item to use
             break;
         default:
-            addMessageInOutput("Skipped turn.");
             return true;
     }
 }
 
 function enemyTurn() {
-
+    for (let i = 0; i < currentEnemies.length; i++) {
+        currentEnemies[i].EStats.UseTurn?.();
+    }
 }
 
 function restartBattle() {
-    player.HP = player.MaxHP;
+    Player.HP = Player.BStats.MaxHP;
+
+    for (let i = 0; i < currentEnemies.length; i++) {
+        currentEnemies[i].BStats.HP = currentEnemies[i].BStats.MaxHP;
+        currentEnemies[i].EStats.MoveCount = 0;
+    }
 }
 //
 
