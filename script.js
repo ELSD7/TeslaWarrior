@@ -1,8 +1,28 @@
 // Important HTML elements
+let gameboxes = document.getElementsByClassName("gamebox")
 
+let titleScreen = document.getElementById("TitleScreen");
+let battleScreen = document.getElementById("BattleScreen");
+let shopScreen = document.getElementById("ShopScreen");
+
+let enemyContainer = document.getElementById("EnemyContainer");
+let enemySlots = document.getElementsByClassName("enemySlot");
+
+let playButton = document.getElementById("PlayButton");
+let creditsButton = document.getElementById("CreditsButton");
+
+let attackEnemyButton = document.getElementById("AttackEnemyButton");
+let defendButton = document.getElementById("DefendButton");
+let checkEnemyButton = document.getElementById("CheckEnemyButton");
+let consumableItemButton = document.getElementById("ConsumableItemButton");
+let skipTurnButton = document.getElementById("SkipTurnButton");
+
+let showTitle = document.getElementById("ShowTitle");
+let showBattle = document.getElementById("ShowBattle");
+let showShop = document.getElementById("ShowShop");
 //
 
-// Classes/Objects and other globals
+// Classes/Objects, other variables and setting up the game
 class BattleStats {
     constructor(hp, defense, resistance, attackPower) {
         this.HP = parseInt(hp);
@@ -151,6 +171,7 @@ let currentEnemies = [
     {}
 ];
 
+
 for (let i = 0; i < currentEnemies.length; i++) {
     if (i % 2 == 0)
         currentEnemies[i] = _.cloneDeep(enemyArray[0]);
@@ -164,6 +185,33 @@ enemyTurn();
 
 
 // Functions
+function showScreen(screenName) {   // Returns true if the screen change was successful, false otherwise
+    for (let i = 0; i < gameboxes.length; i++) {
+        gameboxes[i].style.display = 'none';
+    }
+
+    switch (screenName) {
+        default:
+            console.log(`SCREEN NOT FOUND! (Name: ${screenName})`);
+            return false;
+            break;
+
+        case "Title": case "title": case "TitleScreen": case "titleScreen":
+            titleScreen.style.display = 'flex';
+            break;
+
+        case "Battle": case "battle": case "BattleScreen": case "battleScreen":
+            battleScreen.style.display = 'flex';
+            break;
+
+        case "Shop": case "shop": case "ShopScreen": case "shopScreen":
+            shopScreen.style.display = 'flex';
+            break;
+    }
+
+    return true;
+}
+
 function playerTurn(option) // Returns true if the turn was used, false otherwise
 {
     /*
@@ -216,10 +264,25 @@ function restartBattle() {
 
 
 // Event listeners
+playButton.addEventListener("click", function () {
+    showScreen("battle");
+});
 
+
+showTitle.addEventListener("click", function () {
+    showScreen("title");
+});
+
+showBattle.addEventListener("click", function () {
+    showScreen("battle");
+});
+
+showShop.addEventListener("click", function () {
+    showScreen("shop");
+});
 //
 
 
 // Function calls
-
+showScreen("title");
 //

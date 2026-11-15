@@ -109,4 +109,10 @@ button {
     padding: 1rem;
 }
 
+/* Debug tools */
+
+#debugTools {
+    margin: 100px 0px;
+}
+
 
