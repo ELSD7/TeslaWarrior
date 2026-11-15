@@ -4,6 +4,9 @@ let gameboxes = document.getElementsByClassName("gamebox")
 let titleScreen = document.getElementById("TitleScreen");
 let battleScreen = document.getElementById("BattleScreen");
 let shopScreen = document.getElementById("ShopScreen");
+let winScreen = document.getElementById("WinScreen");
+let loseScreen = document.getElementById("LoseScreen");
+let creditsScreen = document.getElementById("CreditsScreen");
 
 let enemyContainer = document.getElementById("EnemyContainer");
 let enemySlots = document.getElementsByClassName("enemySlot");
@@ -20,6 +23,9 @@ let skipTurnButton = document.getElementById("SkipTurnButton");
 let showTitle = document.getElementById("ShowTitle");
 let showBattle = document.getElementById("ShowBattle");
 let showShop = document.getElementById("ShowShop");
+let showWin = document.getElementById("ShowWin");
+let showLose = document.getElementById("ShowLose");
+let showCredits = document.getElementById("ShowCredits");
 //
 
 // Classes/Objects, other variables and setting up the game
@@ -32,7 +38,7 @@ class BattleStats {
         this.AttackPower = parseInt(attackPower);
     }
 
-    DamageHP(dmg, pierceDef, pierceRes) {   // Returns a number representing how much damage was dealth, returns null if unsuccessful
+    DamageHP(dmg, pierceDef, pierceRes) {   // Returns a number representing how much damage was dealt, returns null if unsuccessful
         if (this.HP <= 0)
             return null;
 
@@ -50,15 +56,12 @@ class BattleStats {
 
         let dmgToInflict;
 
-        if (defenseEquation <= 0) // If defenseEquation is less than 0 that means that the amount of damage that will be inflicted is less than zero, the defense mechanic is used for reducing the amount of damage that will be inflicted to the entity, but it can't reduce it past 1.
+        if (defenseEquation <= 0 || resistanceEquation <= 0) // If defenseEquation is less than 0 that means that the amount of damage that will be inflicted is less than zero, the defense mechanic is used for reducing the amount of damage that will be inflicted to the entity, but it can't reduce it past 1.
             dmgToInflict = 1;
-        else if (resistanceEquation <= 0) // resistanceEquation isn't supposed to be less than 0 in any case so I put this check just in case.
-            dmgToInflict = 0;
         else
             dmgToInflict = parseInt(defenseEquation * resistanceEquation);
 
         this.HP -= dmgToInflict;
-
         return dmgToInflict;
     }
 
@@ -190,22 +193,34 @@ function showScreen(screenName) {   // Returns true if the screen change was suc
         gameboxes[i].style.display = 'none';
     }
 
-    switch (screenName) {
+    switch (screenName.toLowerCase()) {
         default:
             console.log(`SCREEN NOT FOUND! (Name: ${screenName})`);
             return false;
             break;
 
-        case "Title": case "title": case "TitleScreen": case "titleScreen":
+        case "title": case "titlescreen":
             titleScreen.style.display = 'flex';
             break;
 
-        case "Battle": case "battle": case "BattleScreen": case "battleScreen":
+        case "battle": case "battlescreen":
             battleScreen.style.display = 'flex';
             break;
 
-        case "Shop": case "shop": case "ShopScreen": case "shopScreen":
+        case "shop": case "shopscreen":
             shopScreen.style.display = 'flex';
+            break;
+
+        case "win": case "winscreen": case "w":
+            winScreen.style.display = 'flex';
+            break;
+
+        case "lose": case "losescreen": case "l":
+            loseScreen.style.display = 'flex';
+            break;
+
+        case "credits": case "creditsscreen":
+            creditsScreen.style.display = 'flex';
             break;
     }
 
@@ -268,6 +283,10 @@ playButton.addEventListener("click", function () {
     showScreen("battle");
 });
 
+creditsButton.addEventListener("click", function () {
+    showScreen("credits");
+});
+
 
 showTitle.addEventListener("click", function () {
     showScreen("title");
@@ -279,6 +298,18 @@ showBattle.addEventListener("click", function () {
 
 showShop.addEventListener("click", function () {
     showScreen("shop");
+});
+
+showWin.addEventListener("click", function () {
+    showScreen("win");
+});
+
+showLose.addEventListener("click", function () {
+    showScreen("lose");
+});
+
+showCredits.addEventListener("click", function () {
+    showScreen("credits");
 });
 //
 
