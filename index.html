@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <main>
+        <div class="gamebox" id="TitleScreen"> 
+            <img src="#" alt="Title logo" class="titleLogo">
+
+            <div class="buttons">
+                <button id="PlayButton">
+                    Play
+                </button>
+
+                <button id="CreditsButton">
+                    Credits
+                </button>
+            </div>
+        </div>
+
+        <div class="gamebox" id="BattleScreen">
+            <div id="BattleOutput">
+                <p>
+                    events
+                </p>
+            </div>
+
+            <div id="EnemyContainer">
+                <img src="#" alt="Enemy1" class="enemySlot">
+                <img src="#" alt="Enemy2" class="enemySlot">
+                <img src="#" alt="Enemy3" class="enemySlot">
+            </div>
+
+            <div id="BattleButtons">
+                <button id="AttackEnemyButton" class="battleButton">
+                    Attack
+                </button>
+                
+                <button id="DefendButton" class="battleButton">
+                    Defend
+                </button>
+                
+                <button id="CheckEnemyButton" class="battleButton">
+                    Check
+                </button>
+                
+                <button id="ConsumableItemButton" class="battleButton">
+                    Item
+                </button>
+                
+                <button id="SkipTurnButton" class="battleButton">
+                    Skip
+                </button>
+            </div>
+        </div>
+
+        <div class="gamebox" id="ShopScreen">
+            
+        </div>
+
+        <div class="gamebox" id="WinScreen">
+            
+        </div>
+
+        <div class="gamebox" id="LoseScreen">
+            
+        </div>
+
+        <div class="gamebox" id="CreditsScreen">
+            
+        </div>
+    </main>
+
+    <div id="DebugTools">
+        <h2>
+            Debug tools
+        </h2>
+
+        <button id="ShowTitle" class="buttonShow">
+            Show title screen
+        </button>
+    
+        <button id="ShowBattle" class="buttonShow">
+            Show battle screen
+        </button>
+    
+        <button id="ShowShop" class="buttonShow">
+            Show shop screen
+        </button>
+
+        <button id="ShowWin" class="buttonShow">
+            Show win screen
+        </button>
+
+        <button id="ShowLose" class="buttonShow">
+            Show lose screen
+        </button>
+
+        <button id="ShowCredits" class="buttonShow">
+            Show credits screen
+        </button>
+    </div>
+
+    <!-- Mogu da se izostave skripte tokom pisanja htmla da bi se svi gamebox-evi prikazivali odjednom -->
+    <script src="./libraries/Lodash.js"></script>
+    <script src="./script.js"></script>
+</body>
+
+</html>
