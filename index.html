@@ -3,80 +3,88 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <main>
-        <div class="gamebox" id="TitleScreen"> 
-            <img src="#" alt="Title logo" class="titleLogo">
+    <div id="TitleScreen" class="gamebox">
+        <div class="title-logo">Title logo</div>
+        <button id="PlayButton" class="btn-play">Play</button>
+        <button id="CreditsButton" class="btn-credits">Credits</button>
+    </div>
 
-            <div class="buttons">
-                <button id="PlayButton">
-                    Play
-                </button>
+    <div id="BattleScreen" class="gamebox">
+        <div id="battle-events" class="events-bar">events</div>
 
-                <button id="CreditsButton">
-                    Credits
-                </button>
-            </div>
-        </div>
-
-        <div class="gamebox" id="BattleScreen">
-            <div id="BattleOutput">
-                <p>
-                    events
-                </p>
-            </div>
-
+        <div class="battle-bg">
+            <div class="battle-bg-label">Pozadina za borbu</div>
             <div id="EnemyContainer">
-                <img src="#" alt="Enemy1" class="enemySlot">
-                <img src="#" alt="Enemy2" class="enemySlot">
-                <img src="#" alt="Enemy3" class="enemySlot">
-            </div>
-
-            <div id="BattleButtons">
-                <button id="AttackEnemyButton" class="battleButton">
-                    Attack
-                </button>
-                
-                <button id="DefendButton" class="battleButton">
-                    Defend
-                </button>
-                
-                <button id="CheckEnemyButton" class="battleButton">
-                    Check
-                </button>
-                
-                <button id="ConsumableItemButton" class="battleButton">
-                    Item
-                </button>
-                
-                <button id="SkipTurnButton" class="battleButton">
-                    Skip
-                </button>
+                <div id="enemy-1" class="enemySlot">enemy</div>
+                <div id="enemy-2" class="enemySlot">enemy</div>
+                <div id="enemy-3" class="enemySlot">enemy</div>
             </div>
         </div>
 
-        <div class="gamebox" id="ShopScreen">
-            
+        <div class="battle-actions">
+            <button id="AttackEnemyButton">Attack</button>
+            <button id="DefendButton">Defend</button>
+            <button id="CheckEnemyButton">Check</button>
+            <button id="ConsumableItemButton">Item</button>
+            <button id="SkipTurnButton">Skip turn</button>
+        </div>
+    </div>
+
+    <div id="ShopScreen" class="gamebox">
+        <div class="shop-top">
+            <div id="weapon-details" class="weapon-details">
+                Detalji i cena odabranog oruzja
+                <button id="btn-buy-equip" class="btn-buy-equip">buy/equip</button>
+            </div>
+
+            <div class="shop-right-col">
+                <div id="money-display" class="money-display">prikaz novca</div>
+                <div id="shopkeeper-box" class="shopkeeper-box">Mesto za shopkeepera</div>
+            </div>
         </div>
 
-        <div class="gamebox" id="WinScreen">
-            
+        <div class="shop-bottom">
+            <div class="shop-tabs">
+                <div class="tab-group">
+                    <button id="tab-weapons" class="active-tab">Weapons</button>
+                    <button id="tab-armor">Armor</button>
+                    <button id="tab-items">Items</button>
+                </div>
+                <button id="btn-shop-exit">exit</button>
+            </div>
+
+            <div id="section-details" class="section-details">
+                detalji za odabranu sekciju u shopu
+            </div>
+        </div>
+    </div>
+
+    <div id="WinScreen" class="gamebox">
+        <div class="win-banner">
+            <h1>BATTLE WON</h1>
+            <div id="win-coins" class="coins-box">Coins:</div>
         </div>
 
-        <div class="gamebox" id="LoseScreen">
-            
+        <div class="win-footer">
+            <button id="btn-win-menu" class="btn-win-menu">back to main menu (youll lose your progress)</button>
+            <button id="btn-next-battle" class="btn-next-battle">next battle</button>
+            <button id="btn-win-shop" class="btn-win-shop">shop (unlocks after winning 2 battles)</button>
         </div>
+    </div>
 
-        <div class="gamebox" id="CreditsScreen">
-            
+    <div id="LoseScreen" class="gamebox">
+        <div class="lose-banner">
+            <h1>BATTLE LOST</h1>
         </div>
-    </main>
-
+        <button id="btn-lose-menu" class="btn-lose-menu">Back to main menu</button>
+    </div>
     <div id="DebugTools">
         <h2>
             Debug tools
@@ -106,10 +114,9 @@
             Show credits screen
         </button>
     </div>
-
-    <!-- Mogu da se izostave skripte tokom pisanja htmla da bi se svi gamebox-evi prikazivali odjednom -->
-    <script src="./libraries/Lodash.js"></script>
-    <script src="./script.js"></script>
+    
+    <script src="libraries/Lodash.js"></script>
+    <script src="script.js"></script>
 </body>
 
 </html>
