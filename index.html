@@ -67,7 +67,7 @@
     </div>
 
     <div id="WinScreen" class="gamebox">
-        <div class="win-banner">
+        <div id="win-banner" class="Banner">
             <h1>BATTLE WON</h1>
             <div id="win-coins" class="coins-box">Coins:</div>
         </div>
@@ -81,13 +81,25 @@
     </div>
 
     <div id="LoseScreen" class="gamebox">
-        <div class="lose-banner">
+        <div id="lose-banner" class="Banner">
             <h1>BATTLE LOST</h1>
         </div>
-        <button id="btn-lose-menu" class="btn-lose-menu ShowTitle">Back to main menu</button>
+
+        <button id="btn-lose-menu" class="ShowTitle">Back to main menu</button>
     </div>
 
+    <div id="CreditsScreen" class="gamebox">
+        <div id="credits-banner" class="Banner">
+            <p>Programeri: Strahinja Icic
+                <br>
+                Emilija Ivanovic
+            </p>
+            <p>Dizajner: Deja Vasic</p>
+            <p>Tester: Luka Milenovic</p>
+        </div>
 
+        <button id="btn-credits-menu" class="ShowTitle">Back to main menu</button>
+    </div>
 
     <div id="DebugTools">
         <h2>
@@ -118,6 +130,7 @@
             Show credits screen
         </button>
     </div>
+
 
     <script src="libraries/Lodash.js"></script>
     <script src="script.js"></script>
