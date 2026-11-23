@@ -1,4 +1,6 @@
 // Important HTML elements
+
+// HTML ID's
 let gameboxes = document.getElementsByClassName("gamebox")
 
 let titleScreen = document.getElementById("TitleScreen");
@@ -20,12 +22,13 @@ let checkEnemyButton = document.getElementById("CheckEnemyButton");
 let consumableItemButton = document.getElementById("ConsumableItemButton");
 let skipTurnButton = document.getElementById("SkipTurnButton");
 
-let showTitle = document.getElementById("ShowTitle");
-let showBattle = document.getElementById("ShowBattle");
-let showShop = document.getElementById("ShowShop");
-let showWin = document.getElementById("ShowWin");
-let showLose = document.getElementById("ShowLose");
-let showCredits = document.getElementById("ShowCredits");
+// HTML classes
+let showTitle = document.getElementsByClassName("ShowTitle");
+let showBattle = document.getElementsByClassName("ShowBattle");
+let showShop = document.getElementsByClassName("ShowShop");
+let showWin = document.getElementsByClassName("ShowWin");
+let showLose = document.getElementsByClassName("ShowLose");
+let showCredits = document.getElementsByClassName("ShowCredits");
 //
 
 // Classes/Objects, other variables and setting up the game
@@ -279,38 +282,42 @@ function restartBattle() {
 
 
 // Event listeners
-playButton.addEventListener("click", function () {
-    showScreen("battle");
-});
 
-creditsButton.addEventListener("click", function () {
-    showScreen("credits");
-});
+for (let i = 0; i < showTitle.length; i++) {
+    showTitle[i].addEventListener("click", function () {
+        showScreen("title");
+    });
+}
 
+for (let i = 0; i < showBattle.length; i++) {
+    showBattle[i].addEventListener("click", function () {
+        showScreen("battle");
+    });
+}
 
-showTitle.addEventListener("click", function () {
-    showScreen("title");
-});
+for (let i = 0; i < showShop.length; i++) {
+    showShop[i].addEventListener("click", function () {
+        showScreen("shop");
+    });
+}
 
-showBattle.addEventListener("click", function () {
-    showScreen("battle");
-});
+for (let i = 0; i < showWin.length; i++) {
+    showWin[i].addEventListener("click", function () {
+        showScreen("win");
+    });
+}
 
-showShop.addEventListener("click", function () {
-    showScreen("shop");
-});
+for (let i = 0; i < showLose.length; i++) {
+    showLose[i].addEventListener("click", function () {
+        showScreen("lose");
+    });
+}
 
-showWin.addEventListener("click", function () {
-    showScreen("win");
-});
-
-showLose.addEventListener("click", function () {
-    showScreen("lose");
-});
-
-showCredits.addEventListener("click", function () {
-    showScreen("credits");
-});
+for (let i = 0; i < showCredits.length; i++) {
+    showCredits[i].addEventListener("click", function () {
+        showScreen("credits");
+    });
+}
 //
 
 

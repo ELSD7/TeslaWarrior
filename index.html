@@ -12,8 +12,8 @@
 <body>
     <div id="TitleScreen" class="gamebox">
         <div class="title-logo">Title logo</div>
-        <button id="PlayButton">Play</button>
-        <button id="CreditsButton">Credits</button>
+        <button id="PlayButton" class="ShowBattle">Play</button>
+        <button id="CreditsButton" class="ShowCredits">Credits</button>
     </div>
 
     <div id="BattleScreen" class="gamebox">
@@ -57,7 +57,7 @@
                     <button id="tab-armor">Armor</button>
                     <button id="tab-items">Items</button>
                 </div>
-                <button id="btn-shop-exit">exit</button>
+                <button id="btn-shop-exit" class="ShowBattle">exit</button>
             </div>
 
             <div id="section-details" class="section-details">
@@ -73,9 +73,10 @@
         </div>
 
         <div class="win-footer">
-            <button id="btn-win-menu" class="btn-win-menu">back to main menu (youll lose your progress)</button>
-            <button id="btn-next-battle" class="btn-next-battle">next battle</button>
-            <button id="btn-win-shop" class="btn-win-shop">shop (unlocks after winning 2 battles)</button>
+            <button id="btn-win-menu" class="btn-win-menu ShowTitle">back to main menu (youll lose your
+                progress)</button>
+            <button id="btn-next-battle" class="btn-next-battle ShowBattle">next battle</button>
+            <button id="btn-win-shop" class="btn-win-shop ShowShop">shop (unlocks after winning 2 battles)</button>
         </div>
     </div>
 
@@ -83,7 +84,7 @@
         <div class="lose-banner">
             <h1>BATTLE LOST</h1>
         </div>
-        <button id="btn-lose-menu" class="btn-lose-menu">Back to main menu</button>
+        <button id="btn-lose-menu" class="btn-lose-menu ShowTitle">Back to main menu</button>
     </div>
 
 
@@ -93,31 +94,31 @@
             Debug tools
         </h2>
 
-        <button id="ShowTitle" class="buttonShow">
+        <button class="buttonShow ShowTitle">
             Show title screen
         </button>
-    
-        <button id="ShowBattle" class="buttonShow">
+
+        <button class="buttonShow ShowBattle">
             Show battle screen
         </button>
-    
-        <button id="ShowShop" class="buttonShow">
+
+        <button class="buttonShow ShowShop">
             Show shop screen
         </button>
 
-        <button id="ShowWin" class="buttonShow">
+        <button class="buttonShow ShowWin">
             Show win screen
         </button>
 
-        <button id="ShowLose" class="buttonShow">
+        <button class="buttonShow ShowLose">
             Show lose screen
         </button>
 
-        <button id="ShowCredits" class="buttonShow">
+        <button class="buttonShow ShowCredits">
             Show credits screen
         </button>
     </div>
-    
+
     <script src="libraries/Lodash.js"></script>
     <script src="script.js"></script>
 </body>
